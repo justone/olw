@@ -10,7 +10,7 @@ import (
 func LogHandler(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// 172.17.0.2 - - [12/Jan/2017 20:21:40] "GET /README.md HTTP/1.1" 200 -
-		log.Printf("%s %s", getIP(r), r.URL)
+		log.Printf("- %s - %s", getIP(r), r.URL)
 		next.ServeHTTP(w, r)
 	})
 }
