@@ -52,3 +52,4 @@ cat desc | github-release release $PRE_ARG --user justone --repo olw --tag $VER 
 github-release upload --user justone --repo olw --tag $VER --name olw_darwin_amd64 --file olw_darwin_amd64
 github-release upload --user justone --repo olw --tag $VER --name olw_linux_amd64 --file olw_linux_amd64
 github-release upload --user justone --repo olw --tag $VER --name olw_windows_amd64.exe --file olw_windows_amd64.exe
+github-release upload --user justone --repo olw --tag $VER --name olw_linux_arm --file olw_linux_arm
