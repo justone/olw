@@ -26,15 +26,10 @@ func getIP(req *http.Request) string {
 	for _, header := range []string{"X-Real-Ip", "X-Forwarded-For"} {
 		realIP, ok := req.Header[header]
 		if ok {
-			return cleanIP(realIP[0])
+			return realIP[0]
 		}
 	}
 
 	// fall back to the remote address
-	return cleanIP(req.RemoteAddr)
-}
-
-func cleanIP(address string) string {
-	address = strings.TrimPrefix(address, "::ffff:")
-	return strings.Split(address, ":")[0]
+	return req.RemoteAddr
 }
