@@ -1,10 +1,10 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
-	"strings"
 )
 
 func LogHandler(next http.Handler) http.Handler {
@@ -16,8 +16,11 @@ func LogHandler(next http.Handler) http.Handler {
 }
 
 func main() {
-	fmt.Println("Serving HTTP on 0.0.0.0 port 8000 ...")
-	log.Fatal(http.ListenAndServe(":8000", LogHandler(http.FileServer(http.Dir(".")))))
+	port := flag.Int("port", 8000, "port to listen on")
+	flag.Parse()
+
+	fmt.Printf("Serving HTTP on 0.0.0.0 port %d ...\n", *port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", *port), LogHandler(http.FileServer(http.Dir(".")))))
 }
 
 func getIP(req *http.Request) string {
